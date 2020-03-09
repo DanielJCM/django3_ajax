@@ -1,0 +1,12 @@
+.text-green{
+    color: green !important;
+}
+.btn-default{
+    border-color: lightgray;
+}
+.btn-default:hover{
+    background: lightgray;
+}
+.margen{
+    margin: 20px;
+}

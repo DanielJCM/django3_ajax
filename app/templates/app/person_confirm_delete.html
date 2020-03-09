@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+{% block title %}Confirm delete person{% endblock %}
+{% block body %}
+<div class="modal-dialog ">
+    <div class="modal-content">
+        <form role="form" action="{% url 'delete' person.id %}" method="post">
+            <div class="modal-header">
+                <h5>Delete Person</h5>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+            </div>
+            <div class="panel panel-default">
+                <div class="modal-body">{% csrf_token %}
+                        Are you sure you want to delete "{{ object }}" ?
+                </div>    
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-danger" type="submit" value="Delete" />
+                <button type="button" class="btn btn-default" onclick="return cerrar_modal()">
+                    Close
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

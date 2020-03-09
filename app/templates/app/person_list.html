@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+{% block title %}List{% endblock %}
+{% block body %}
+<br>
+<a onclick="return abrir_modal('{% url 'create' %}')" class="btn btn-default text-green">New</a>
+<br>
+<br>
+<h1>People</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Last name</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in object_list %}
+        <tr>
+            <td class="text-center">{{ person.id }}</td>
+            <td class="text-center">{{ person.first_name }}</td>
+            <td class="text-center">{{ person.last_name }}</td>
+            <td class="text-center">
+                <a onclick="return abrir_modal('{% url 'update' person.id %}')" class="btn">
+                    <i class="fa fa-edit fa-lg ollapsed"></i>
+                </a>
+                |
+                <a onclick="return abrir_modal('{% url 'details' person.id %}')" class="btn">
+                    <i class="fa fa-eye fa-lg ollapsed"></i>
+                </a>
+                |
+                <a onclick="return abrir_modal('{% url 'delete' person.id %}')" class="btn">
+                    <i class="fa fa-trash fa-lg ollapsed"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div id="popup" class="modal fade" role="dialog">
+</div>
+{% endblock %}
