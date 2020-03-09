@@ -25,7 +25,7 @@ SECRET_KEY = 'mx_or1^5zv($qucn0sbj(ejyug&e%pl@4yvse4d69rc#$7kiy_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.12.133']
+ALLOWED_HOSTS = ['192.168.12.133', '127.0.0.1']
 
 
 # Application definition
