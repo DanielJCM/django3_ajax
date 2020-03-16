@@ -6,3 +6,4 @@
 *.swp
 db.sqlite3
 app/migrations/
+static/node_modules
