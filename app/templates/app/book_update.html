@@ -9,13 +9,13 @@
 		</div>
 		<div class="modal-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
     		        <label>{{ form.title.label }}</label>
     		        <br />
     		        {{ form.title }}
     		        {% if form.title.errors %}
     		          <br />
-    		          <b>Alert: </b>{{ form.title.errors}}
+    		          <b class="text-red">Alert: {{ form.title.errors}} </b>
                     {% endif %}
     		        <br />
                     <label>{{ form.publication_date.label }}</label>
@@ -23,7 +23,7 @@
                     {{ form.publication_date }}
                     {% if form.publication_date.errors %}
                       <br />
-                      <b>Alert: </b>{{ form.publication_date.errors}}
+                      <b class="text-red">Alert: {{ form.publication_date.errors}} </b>
                     {% endif %}
                     <br />
                     <label>{{ form.author.label }}</label>
@@ -31,7 +31,7 @@
                     {{ form.author }}
                     {% if form.author.errors %}
                       <br />
-                      <b>Alert: </b>{{ form.author.errors}}
+                      <b class="text-red">Alert: {{ form.author.errors}}</b>
                     {% endif %}
                     <br />
                     <label>{{ form.price.label }}</label>
@@ -39,7 +39,7 @@
                     {{ form.price }}
                     {% if form.price.errors %}
                       <br />
-                      <b>Alert: </b>{{ form.price.errors}}
+                      <b class="text-red">Alert: {{ form.price.errors}} </b>
                     {% endif %}
                     <br />
                     <label>{{ form.pages.label }}</label>
@@ -47,7 +47,7 @@
                     {{ form.pages }}
                     {% if form.pages.errors %}
                       <br />
-                      <b>Alert: </b>{{ form.pages.errors}}
+                      <b class="text-red">Alert: {{ form.pages.errors}} </b>
                     {% endif %}
                     <br />
                     <label>{{ form.book_type.label }}</label>
@@ -55,7 +55,7 @@
                     {{ form.book_type }}
                     {% if form.book_type.errors %}
                       <br />
-                      <b>Alert: </b>{{ form.book_type.errors}}
+                      <b class="text-red">Alert: {{ form.book_type.errors}}</b>
                     {% endif %}
                     <br />
                     <br />

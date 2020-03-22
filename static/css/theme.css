@@ -1,6 +1,9 @@
 .text-green{
     color: green !important;
 }
+.text-red{
+    color: red !important;
+}
 .btn-default{
     border-color: lightgray;
 }
