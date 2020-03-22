@@ -1,80 +1,60 @@
 # -*- coding: utf-8 -*-
-from django.views.generic import View, ListView, TemplateView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from app.models import Person
-from app.forms import PersonForm
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from .models import Book
+from .forms import BookForm
 from django.http import JsonResponse
-
-class Index(TemplateView):
-    """
-    Class that shows the start template.
-    """
-    template_name = "app/index.html"
+from django.template.loader import render_to_string
 
 
-class List(ListView):
-    """
-    Class that lists the Person objects.
-    """
-    model = Person
-    template_name = 'app/person_list.html'
-    context_object_name = 'people'
+def list(request):
+    books = Book.objects.all()
+    context = {
+    'books': books
+    }
+    return render(request, 'app/book_list.html',context)
 
+def save_all(request,form,template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            books = Book.objects.all()
+            data['book_list'] = render_to_string('app/book_list_2.html',{'books':books})
+        else:
+            data['form_is_valid'] = False
+    context = {
+    'form':form
+    }
+    data['html_form'] = render_to_string(template_name,context,request=request)
+    return JsonResponse(data)
 
-class Create(View):
-    def  get(self, request):
-        first_name1 = request.GET.get('first_name', None)
-        last_name1 = request.GET.get('last_name', None)
+def create(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+    else:
+        form = BookForm()
+    return save_all(request,form,'app/book_create.html')
 
-        obj = Person.objects.create(
-            first_name = first_name1,
-            last_name = last_name1,
-        )
+def update(request,id):
+    book = get_object_or_404(Book,id=id)
+    if request.method == 'POST':
+        form = BookForm(request.POST,instance=book)
+    else:
+        form = BookForm(instance=book)
+    return save_all(request,form,'app/book_update.html')
 
-        person = {'id':obj.id,'first_name':obj.first_name,'last_name':obj.last_name}
+def delete(request,id):
+    data = dict()
+    book = get_object_or_404(Book,id=id)
+    if request.method == "POST":
+        book.delete()
+        data['form_is_valid'] = True
+        books = Book.objects.all()
+        data['book_list'] = render_to_string('app/book_list_2.html',{'books':books})
+    else:
+        context = {'book':book}
+        data['html_form'] = render_to_string('app/book_delete.html',context,request=request)
 
-        data = {
-            'person': person
-        }
-        return JsonResponse(data)
+    return JsonResponse(data)
 
-
-class Update(View):
-    def  get(self, request):
-        id1 = request.GET.get('id', None)
-        first_name1 = request.GET.get('first_name', None)
-        last_name1 = request.GET.get('last_name', None)
-
-        obj = Person.objects.get(id=id1)
-        obj.first_name = first_name1
-        obj.last_name = last_name1
-        obj.save()
-
-        person = {'id':obj.id,'first_name':obj.first_name,'last_name':obj.last_name}
-
-        data = {
-            'person': person
-        }
-        return JsonResponse(data)
-
-
-class Delete(View):
-    def  get(self, request):
-        id1 = request.GET.get('id', None)
-        Person.objects.get(id=id1).delete()
-        data = {
-            'deleted': True
-        }
-        return JsonResponse(data)
-
-
-class Detail(View):
-    """
-    Class that allows you to see the details of a Person object
-    """
-    model = Person
-    template_name = 'app/person_detail.html'
-
-# Create your views here.

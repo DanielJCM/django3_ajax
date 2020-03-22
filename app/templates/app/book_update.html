@@ -1,0 +1,69 @@
+{% load static %}
+<form method="post" data-url="{% url 'update' form.instance.id %}" class="update-form">
+	{% csrf_token %}
+		<div class="modal-header">
+		<h5 class="modal-title" >Update Book</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+            <div class="row">
+                <div class="col-sm-4">
+    		        <label>{{ form.title.label }}</label>
+    		        <br />
+    		        {{ form.title }}
+    		        {% if form.title.errors %}
+    		          <br />
+    		          <b>Alert: </b>{{ form.title.errors}}
+                    {% endif %}
+    		        <br />
+                    <label>{{ form.publication_date.label }}</label>
+                    <br />
+                    {{ form.publication_date }}
+                    {% if form.publication_date.errors %}
+                      <br />
+                      <b>Alert: </b>{{ form.publication_date.errors}}
+                    {% endif %}
+                    <br />
+                    <label>{{ form.author.label }}</label>
+                    <br />
+                    {{ form.author }}
+                    {% if form.author.errors %}
+                      <br />
+                      <b>Alert: </b>{{ form.author.errors}}
+                    {% endif %}
+                    <br />
+                    <label>{{ form.price.label }}</label>
+                    <br />
+                    {{ form.price }}
+                    {% if form.price.errors %}
+                      <br />
+                      <b>Alert: </b>{{ form.price.errors}}
+                    {% endif %}
+                    <br />
+                    <label>{{ form.pages.label }}</label>
+                    <br />
+                    {{ form.pages }}
+                    {% if form.pages.errors %}
+                      <br />
+                      <b>Alert: </b>{{ form.pages.errors}}
+                    {% endif %}
+                    <br />
+                    <label>{{ form.book_type.label }}</label>
+                    <br />
+                    {{ form.book_type }}
+                    {% if form.book_type.errors %}
+                      <br />
+                      <b>Alert: </b>{{ form.book_type.errors}}
+                    {% endif %}
+                    <br />
+                    <br />
+			    </div>  
+			</div>
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="submit" class="btn btn-primary">edit book</button>
+		</div>
+</form>

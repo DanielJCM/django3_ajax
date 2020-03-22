@@ -6,25 +6,15 @@ from django.forms import (
 )
 
 
-class PersonForm(forms.ModelForm):
+class BookForm(forms.ModelForm):
     """
     Form that manages the person model fields
     """
-    first_name = forms.CharField(widget=TextInput(attrs={
-            'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
-        }), required = True)
 
-    last_name = forms.CharField(widget=TextInput(attrs={
-            'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
-        }), required = True)
+    publication_date = forms.DateTimeInput()
 
     class Meta:
 
-        model = Person
+        model = Book
 
-        fields = [
-            'first_name',
-            'last_name',
-        ]
+        fields = ('title', 'publication_date', 'author', 'price', 'pages', 'book_type', )
