@@ -2,36 +2,34 @@
 {% load static %}
 
 {% block content %}
-<div class="margen">
-  <h1 class="page-header">Books</h1>
-  <button class="btn btn-primary show-form" data-url="{% url 'create' %}">
-  <span class="fa fa-plus"></span>
-  New Book
-  </button>
-  <br>
-  <br>
-  <table class="table" id="book-table">
-    <thead>
-      <tr>
-        <th class="text-center">#</th>
-        <th class="text-center">Title</th>
-        <th class="text-center">Author</th>
-        <th class="text-center">Type</th>
-        <th class="text-center">Publication date</th>
-        <th class="text-center">Pages</th>
-        <th class="text-center">Price</th>
-        <th class="text-center">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% include "app/book_list_2.html" %}
-    </tbody>
-  </table>
+<h1 class="page-header">Books</h1>
+<button class="btn btn-primary show-form" data-url="{% url 'create' %}">
+<span class="fa fa-plus"></span>
+New Book
+</button>
+<br>
+<br>
+<table class="table" id="book-table">
+  <thead>
+    <tr>
+      <th class="text-center">#</th>
+      <th class="text-center">Title</th>
+      <th class="text-center">Author</th>
+      <th class="text-center">Type</th>
+      <th class="text-center">Publication date</th>
+      <th class="text-center">Pages</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% include "app/book_list_2.html" %}
+  </tbody>
+</table>
 
-  <div class="modal fade" id="modal-book">
-    <div class="modal-dialog">
-      <div class="modal-content"></div>
-    </div>
+<div class="modal fade" id="modal-book">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
   </div>
 </div>
 {% endblock %}

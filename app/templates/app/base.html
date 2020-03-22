@@ -25,20 +25,13 @@
     <!-- Styles - css
     ================================================== -->
     <link href="{% static 'css/theme.css' %}" rel="stylesheet">
-    <!-- Materialize - text-fields - css
-    ================================================== -->
-    <link rel="stylesheet" type="text/css" href="{% static 'node_modules/@material/textfield/dist/mdc.textfield.min.css' %}">
-    <!-- Materialize - text-fields - js
-    ================================================== -->
-    <script src="{% static 'node_modules/@material/textfield/dist/mdc.textfield.min.js' %}" type="text/javascript"></script>
     <!-- Scripts - js
     ================================================== -->
-    <script src="{% static 'js/scripts.js' %}?version=1.0" type="text/javascript"></script>
-    
-  </head>
+    <script src="{% static 'js/scripts.js' %}" type="text/javascript"></script>
+</head>
 <body class="margen">
     {% block content %}
-    Base
+        Base
     {% endblock %}
     {% block javascript %}
     {% endblock javascript%}
